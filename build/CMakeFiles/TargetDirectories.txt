@@ -1,0 +1,2 @@
+/u/jleung/Downloads/CS354_Graphics/a3/skinning/build/src/CMakeFiles/skinning.dir
+/u/jleung/Downloads/CS354_Graphics/a3/skinning/build/CMakeFiles/utgraphicsutil.dir
