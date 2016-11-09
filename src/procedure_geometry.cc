@@ -34,34 +34,51 @@ void create_bones(struct Mesh mesh, std::vector<glm::vec4>& bone_vertices, std::
 	// std::cout << "numbones: " << skeleton.bones.size() << std::endl;
 	// std::cout << "numjoints: " << skeleton.joints.size() << std::endl;
 	// std::cout << "first joint: " << skeleton.joints[0].id << std::endl;
-	Joint root = skeleton.rootJoint;
-	for (int i = 0; i < skeleton.bones.size(); i++) {
-		bone = skeleton.bones[i];
-		start = skeleton.joints[bone.jointStart];
-		end = skeleton.joints[bone.jointEnd];
-		jointStartCoords = recurse_joint(mesh, start);
-		jointEndCoords = jointStartCoords+end.offset;//recurse_joint(mesh, end);
-
-		startVertices = glm::vec4(jointStartCoords[0], jointStartCoords[1], jointStartCoords[2], 0.0f);
-		endVertices = glm::vec4(jointEndCoords[0], jointEndCoords[1], jointEndCoords[2], 0.0f);
-
-		bone_vertices.push_back(startVertices);
-		bone_vertices.push_back(endVertices);
-
-		bone_faces.push_back(glm::uvec2(startIndex, endIndex));
-
-		startIndex+=2;
-		endIndex+=2;
-	}
+	Joint root =  skeleton.rootJoint;
+	std::cout << "root children size: " << root.children.size() << std::endl;
+	std::cout << "root id: " << root.id << std::endl;
+	std::cout << "root parent id: " << root.parentID << std::endl;
+	std::cout << "joints first " << skeleton.joints[0].parentID << std::endl;
+	recurse_joint(mesh, root, root.offset, bone_vertices, bone_faces);
 }
 
-glm::vec3 recurse_joint(struct Mesh mesh, struct Joint root) {
-	if (root.parentID == -1) {
-		std::cout << "base case" << std::endl;
-		return root.offset;
+
+void recurse_joint(struct Mesh mesh, struct Joint parent, glm::vec3 offsetSoFar, std::vector<glm::vec4>& bone_vertices, std::vector<glm::uvec2>& bone_faces) {
+	if (parent.children.size() > 0) {
+		for (int i = 0; i < parent.children.size(); i++) {
+			int currJointIndex = parent.children[i];
+			Joint currJoint = mesh.skeleton.joints[currJointIndex];
+			glm::vec3 jointStartCoords = offsetSoFar;
+			glm::vec4 startVertices = glm::vec4(jointStartCoords[0], jointStartCoords[1], jointStartCoords[2], 0.0f);
+
+			glm::vec3 jointEndCoords = currJoint.offset + offsetSoFar;
+			glm::vec4 endVertices = glm::vec4(jointEndCoords[0], jointEndCoords[1], jointEndCoords[2], 0.0f);
+			
+			bone_vertices.push_back(startVertices);
+			bone_vertices.push_back(endVertices);
+
+			bone_faces.push_back(glm::uvec2(bone_vertices.size()-2, bone_vertices.size()-1));
+			//glm::vec3 world_coords = root.offset + recurse_joint(mesh, mesh.skeleton.joints[root.parentID]);
+
+			recurse_joint(mesh, currJoint, jointEndCoords, bone_vertices, bone_faces);
+		}
+		
 	}
-	std::cout << "appended offset: " << root.offset.x << " " << root.offset.y << " " << root.offset.z << std::endl;
-	return root.offset + recurse_joint(mesh, mesh.skeleton.joints[root.parentID]);
 }
+// glm::vec3 recurse_joint(struct Mesh mesh, struct Joint root) {
+// 	if (root.parentID == -1) {
+// 		std::cout << "base case" << std::endl;
+// 		return root.offset;
+// 	}
+// 	std::cout << "appended offset: " << root.offset.x << " " << root.offset.y << " " << root.offset.z << std::endl;
+// 	return root.offset + recurse_joint(mesh, mesh.skeleton.joints[root.parentID]);
+// }
+
+
 
 // parent joint plus child joint to get  to world coordinates, but child of child joints needs to be set too
+
+
+// start at root joint
+// for every child of the root joint, call recurse joint
+

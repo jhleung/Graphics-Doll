@@ -54,8 +54,12 @@ void Mesh::loadpmd(const std::string& fn)
 		joint.parentID = parent;
 
 		if (parent == -1) {
+			// std::cout << "root id " << id << std::endl;
 			skeleton.rootJoint = joint;
+			//std::vector<int> children;
+			//skeleton.rootJoint.children = children;
 		} else {
+			// if (parent == 0) std::cout << "root" << std::endl;
 			Bone bone;
 			//skeleton.joints[parent];
 			
@@ -95,7 +99,11 @@ void Mesh::loadpmd(const std::string& fn)
 			skeleton.joints[parent].outBones.push_back(boneIndex);
 			joint.inBone = boneIndex;	
 
+			if (parent == 0) 
+				skeleton.rootJoint.children.push_back(id);
+			//else
 			skeleton.joints[parent].children.push_back(id);
+
 		}
 		skeleton.joints.push_back(joint);
 		id++;
