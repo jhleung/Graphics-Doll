@@ -99,11 +99,11 @@ src/CMakeFiles/skinning.dir/gui.cc.o: ../lib/mmd/util/texture.inl
 src/CMakeFiles/skinning.dir/gui.cc.o: ../lib/mmd/util/texture_impl.inl
 src/CMakeFiles/skinning.dir/gui.cc.o: ../lib/mmd/util/unpack.inc
 src/CMakeFiles/skinning.dir/gui.cc.o: ../lib/mmdadapter.h
-src/CMakeFiles/skinning.dir/gui.cc.o: /lusr/opt/glfw-3.2/include/GLFW/glfw3.h
 src/CMakeFiles/skinning.dir/gui.cc.o: ../src/bone_geometry.h
 src/CMakeFiles/skinning.dir/gui.cc.o: ../src/config.h
 src/CMakeFiles/skinning.dir/gui.cc.o: ../src/gui.cc
 src/CMakeFiles/skinning.dir/gui.cc.o: ../src/gui.h
+src/CMakeFiles/skinning.dir/gui.cc.o: /usr/local/include/GLFW/glfw3.h
 
 src/CMakeFiles/skinning.dir/main.cc.o: ../lib/debuggl.h
 src/CMakeFiles/skinning.dir/main.cc.o: ../lib/image.h
@@ -152,7 +152,6 @@ src/CMakeFiles/skinning.dir/main.cc.o: ../lib/mmd/util/texture.inl
 src/CMakeFiles/skinning.dir/main.cc.o: ../lib/mmd/util/texture_impl.inl
 src/CMakeFiles/skinning.dir/main.cc.o: ../lib/mmd/util/unpack.inc
 src/CMakeFiles/skinning.dir/main.cc.o: ../lib/mmdadapter.h
-src/CMakeFiles/skinning.dir/main.cc.o: /lusr/opt/glfw-3.2/include/GLFW/glfw3.h
 src/CMakeFiles/skinning.dir/main.cc.o: ../src/bone_geometry.h
 src/CMakeFiles/skinning.dir/main.cc.o: ../src/config.h
 src/CMakeFiles/skinning.dir/main.cc.o: ../src/gui.h
@@ -165,6 +164,7 @@ src/CMakeFiles/skinning.dir/main.cc.o: ../src/shaders/default.frag
 src/CMakeFiles/skinning.dir/main.cc.o: ../src/shaders/default.geom
 src/CMakeFiles/skinning.dir/main.cc.o: ../src/shaders/default.vert
 src/CMakeFiles/skinning.dir/main.cc.o: ../src/shaders/floor.frag
+src/CMakeFiles/skinning.dir/main.cc.o: /usr/local/include/GLFW/glfw3.h
 
 src/CMakeFiles/skinning.dir/procedure_geometry.cc.o: ../lib/image.h
 src/CMakeFiles/skinning.dir/procedure_geometry.cc.o: ../lib/material.h

@@ -54,20 +54,18 @@ void Mesh::loadpmd(const std::string& fn)
 		joint.parentID = parent;
 
 		if (parent == -1) {
-			// std::cout << "root id " << id << std::endl;
-			skeleton.rootJoint = joint;
-			//std::vector<int> children;
-			//skeleton.rootJoint.children = children;
-		} else {
-			// if (parent == 0) std::cout << "root" << std::endl;
+			skeleton.rootJoint = id;
 			Bone bone;
-			//skeleton.joints[parent];
+			skeleton.bones.push_back(bone);
+		} else {
+			Bone bone;
 			
 			bone.jointStart = parent;
 			bone.jointEnd = id;
 			
-			bone.t = glm::normalize(skeleton.joints[bone.jointStart].offset - skeleton.joints[bone.jointEnd].offset);
+			bone.t = joint.offset;			
 			bone.length = glm::length(bone.t);
+			bone.t = glm::normalize(bone.t);
 			glm::vec3 v = bone.t;
 			int min = std::min(std::min(v[0],v[1]),v[2]);
 			if (v[0] == min) {
@@ -83,26 +81,35 @@ void Mesh::loadpmd(const std::string& fn)
 				v[0] = 0;
 				v[1] = 0;
 			}
-				// bone.n = glm::cross(bone.t, v) / glm::length(glm::cross(bone.t, v));
-				// bone.b = glm::cross(bone.t, bone.n);
+			bone.n = glm::cross(bone.t, v) / glm::length(glm::cross(bone.t, v));
+			bone.b = glm::cross(bone.t, bone.n);
 			
 
-			bone.translation = glm::mat4(1.0f, 0.0f, 0.0f, bone.t[0],
-										 0.0f, 1.0f, 0.0f, bone.t[1],
-										 0.0f, 0.0f, 1.0f, bone.t[2],
-									     0.0f, 0.0f, 0.0f, 1.0f);
+			// bone.translation = glm::mat4(1.0f, 0.0f, 0.0f, bone.t[0],
+			// 							 0.0f, 1.0f, 0.0f, bone.t[1],
+			// 							 0.0f, 0.0f, 1.0f, bone.t[2],
+			// 						     0.0f, 0.0f, 0.0f, 1.0f);
 
+			// bone.rotation = glm::mat4(bone.t.x, bone.t.y, bone.t.z, 0.0f,
+			// 						  bone.b.x, bone.b.y, bone.b.z, 0.0f,
+			// 						  bone.n.x, bone.n.y, bone.n.z, 0.0f,
+			// 						  0.0f, 0.0f, 0.0f, 1.0f);
 			
 			skeleton.bones.push_back(bone);
 			int boneIndex = skeleton.bones.size()-1;
 	
-			skeleton.joints[parent].outBones.push_back(boneIndex);
-			joint.inBone = boneIndex;	
+			skeleton.joints[parent].outBones.push_back(id);
+			joint.inBone = id;	
 
-			if (parent == 0) 
-				skeleton.rootJoint.children.push_back(id);
+			// if (parent == 0) { 
+			// 	skeleton.rootJoint.children.push_back(id);
+			// 	skeleton.rootJoint.outBones.push_back(boneIndex);
+			// }
 			//else
 			skeleton.joints[parent].children.push_back(id);
+			if (parent == 0)
+			std::cout << " parent outbones size: " << skeleton.joints[parent].outBones.size() << 
+						" parent children size: " << skeleton.joints[parent].outBones.size() << std::endl;
 
 		}
 		skeleton.joints.push_back(joint);

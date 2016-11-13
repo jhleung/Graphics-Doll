@@ -1,4 +1,4 @@
-# Install script for directory: /u/jleung/Downloads/CS354_Graphics/a3/skinning/src
+# Install script for directory: /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)

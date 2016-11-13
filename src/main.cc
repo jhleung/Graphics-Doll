@@ -111,11 +111,11 @@ int main(int argc, char* argv[])
 	create_bones(mesh, bone_vertices, bone_faces);
 	std::cout << "Loaded bones with  " << bone_vertices.size()
 		<< " vertices and " << bone_faces.size() << " faces.\n";
-	for (int i = 0; i < bone_vertices.size(); i++){
-		printf("%f, %f, %f\n",bone_vertices[i].x, bone_vertices[i].y, bone_vertices[i].z );
-		// std::cout << bone_vertices[i].x << " " << bone_vertices[i].y << " " << bone_vertices[i].z << std::endl;
+	// for (int i = 0; i < bone_vertices.size(); i++){
+	// 	printf("%f, %f, %f\n",bone_vertices[i].x, bone_vertices[i].y, bone_vertices[i].z );
+	// 	// std::cout << bone_vertices[i].x << " " << bone_vertices[i].y << " " << bone_vertices[i].z << std::endl;
 
-	}
+	// }
 	/*
 	 * GUI object needs the mesh object for bone manipulation.
 	 */
@@ -276,7 +276,7 @@ int main(int argc, char* argv[])
 		// Then draw floor.
 		if (draw_skeleton) {
 			bone_pass.setup();
-			CHECK_GL_ERROR(glDrawElements(GL_LINES, floor_faces.size() * 2, GL_UNSIGNED_INT, 0));
+			CHECK_GL_ERROR(glDrawElements(GL_LINES, bone_faces.size() * 2, GL_UNSIGNED_INT, 0));
 		}
 		if (draw_floor) {
 			floor_pass.setup();

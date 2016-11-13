@@ -42,6 +42,7 @@ struct Bone {
 	glm::vec3 n; // arbitrary unit vector perpindicular to t
 	glm::vec3 b; // binormal direction
 	glm::mat4 translation;
+	glm::mat4 rotation;
 	// orientation matrix is just tnb
 	// transformation matrices (translate/rotation)
 
@@ -49,7 +50,7 @@ struct Bone {
 
 struct Skeleton {
 	// FIXME: create skeleton and bone data structures
-	Joint rootJoint;
+	int rootJoint;
 	std::vector<Bone> bones;
 	std::vector<Joint> joints;
 };
