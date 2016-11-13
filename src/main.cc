@@ -109,8 +109,8 @@ int main(int argc, char* argv[])
 	std::vector<glm::vec4> bone_vertices;
 	std::vector<glm::uvec2> bone_faces;
 	create_bones(mesh, bone_vertices, bone_faces);
-	std::cout << "Loaded bones with  " << bone_vertices.size()
-		<< " vertices and " << bone_faces.size() << " faces.\n";
+	// std::cout << "Loaded bones with  " << bone_vertices.size()
+	// 	<< " vertices and " << bone_faces.size() << " faces.\n";
 	// for (int i = 0; i < bone_vertices.size(); i++){
 	// 	printf("%f, %f, %f\n",bone_vertices[i].x, bone_vertices[i].y, bone_vertices[i].z );
 	// 	// std::cout << bone_vertices[i].x << " " << bone_vertices[i].y << " " << bone_vertices[i].z << std::endl;

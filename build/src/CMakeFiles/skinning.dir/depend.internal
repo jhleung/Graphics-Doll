@@ -54,6 +54,7 @@ src/CMakeFiles/skinning.dir/bone_geometry.cc.o
 src/CMakeFiles/skinning.dir/gui.cc.o
  ../lib/debuggl.h
  ../lib/image.h
+ ../lib/jpegio.cc
  ../lib/jpegio.h
  ../lib/material.h
  ../lib/mmd/material/material.inl

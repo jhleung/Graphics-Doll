@@ -53,6 +53,7 @@ src/CMakeFiles/skinning.dir/bone_geometry.cc.o: ../src/config.h
 
 src/CMakeFiles/skinning.dir/gui.cc.o: ../lib/debuggl.h
 src/CMakeFiles/skinning.dir/gui.cc.o: ../lib/image.h
+src/CMakeFiles/skinning.dir/gui.cc.o: ../lib/jpegio.cc
 src/CMakeFiles/skinning.dir/gui.cc.o: ../lib/jpegio.h
 src/CMakeFiles/skinning.dir/gui.cc.o: ../lib/material.h
 src/CMakeFiles/skinning.dir/gui.cc.o: ../lib/mmd/material/material.inl

@@ -2,12 +2,13 @@
 #include "config.h"
 #include <jpegio.h>
 #include "bone_geometry.h"
+#include "jpegio.cc"
+
 #include <iostream>
 #include <debuggl.h>
 #include <glm/gtc/matrix_access.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
-
 namespace {
 	// Intersect a cylinder with radius 1/2, height 1, with base centered at
 	// (0, 0, 0) and up direction (0, 1, 0).
@@ -73,6 +74,15 @@ void GUI::keyCallback(int key, int scancode, int action, int mods)
 		current_bone_ %= mesh_->getNumberOfBones();
 	} else if (key == GLFW_KEY_T && action != GLFW_RELEASE) {
 		transparent_ = !transparent_;
+	}
+	else if (key == GLFW_KEY_J && action != GLFW_RELEASE) {
+		unsigned char*  data = new unsigned char[window_width_ * window_height_ * 3];
+		glReadPixels(0,0,window_width_,window_height_,GL_RGB,GL_UNSIGNED_BYTE,data);
+		SaveJPEG("../Screenshot.jpg",
+              window_width_,
+              window_height_,
+              data);
+		delete [] data;
 	}
 }
 

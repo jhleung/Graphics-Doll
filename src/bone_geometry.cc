@@ -65,24 +65,24 @@ void Mesh::loadpmd(const std::string& fn)
 			
 			bone.t = joint.offset;			
 			bone.length = glm::length(bone.t);
-			bone.t = glm::normalize(bone.t);
-			glm::vec3 v = bone.t;
-			int min = std::min(std::min(v[0],v[1]),v[2]);
-			if (v[0] == min) {
-				v[0] = 1;
-				v[1] = 0;
-				v[2] = 0;
-			} else if (v[1] == min) {
-				v[1] = 1;
-				v[0] = 0;
-				v[2] = 0;
-			} else if (v[2] == min) {
-				v[2] = 1;
-				v[0] = 0;
-				v[1] = 0;
-			}
-			bone.n = glm::cross(bone.t, v) / glm::length(glm::cross(bone.t, v));
-			bone.b = glm::cross(bone.t, bone.n);
+			// bone.t = glm::normalize(bone.t);
+			// glm::vec3 v = bone.t;
+			// int min = std::min(std::min(v[0],v[1]),v[2]);
+			// if (v[0] == min) {
+			// 	v[0] = 1;
+			// 	v[1] = 0;
+			// 	v[2] = 0;
+			// } else if (v[1] == min) {
+			// 	v[1] = 1;
+			// 	v[0] = 0;
+			// 	v[2] = 0;
+			// } else if (v[2] == min) {
+			// 	v[2] = 1;
+			// 	v[0] = 0;
+			// 	v[1] = 0;
+			// }
+			// bone.n = glm::cross(bone.t, v) / glm::length(glm::cross(bone.t, v));
+			// bone.b = glm::cross(bone.t, bone.n);
 			
 
 			// bone.translation = glm::mat4(1.0f, 0.0f, 0.0f, bone.t[0],
@@ -107,10 +107,6 @@ void Mesh::loadpmd(const std::string& fn)
 			// }
 			//else
 			skeleton.joints[parent].children.push_back(id);
-			if (parent == 0)
-			std::cout << " parent outbones size: " << skeleton.joints[parent].outBones.size() << 
-						" parent children size: " << skeleton.joints[parent].outBones.size() << std::endl;
-
 		}
 		skeleton.joints.push_back(joint);
 		id++;

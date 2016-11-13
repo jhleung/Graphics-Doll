@@ -246,22 +246,6 @@ string
 glm/glm.hpp
 -
 
-/u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/bone_geometry.cc
-config.h
-/u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/config.h
-bone_geometry.h
-/u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/bone_geometry.h
-fstream
--
-iostream
--
-stdexcept
--
-glm/gtx/io.hpp
--
-glm/gtx/transform.hpp
--
-
 /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/bone_geometry.h
 ostream
 -
@@ -279,4 +263,22 @@ mmd/mmd.hxx
 /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/mmd/mmd.hxx
 
 /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/config.h
+
+/u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.cc
+procedure_geometry.h
+/u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.h
+bone_geometry.h
+/u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/bone_geometry.h
+config.h
+/u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/config.h
+glm/ext.hpp
+-
+iostream
+-
+
+/u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.h
+vector
+-
+glm/glm.hpp
+-
 
