@@ -16,8 +16,8 @@ void create_floor(std::vector<glm::vec4>& floor_vertices, std::vector<glm::uvec3
 }
 
 void create_cylinder(std::vector<glm::vec4>& cylinder_vertices, std::vector<glm::uvec2>& cylinder_faces) {
-	for (int i = 0; i < 11; i++) {
-		float y = i/10;
+	for (float i = 0; i < 10; i++) {
+		float y = i/10.0f;
 		//float theta = 2*M_PI*y;
 		glm::vec4 start = glm::vec4(0.0f, y, 0.0f, 1.0f);
 		glm::vec4 end = glm::vec4(0.0f, y, 1.0f, 1.0f);
@@ -26,13 +26,12 @@ void create_cylinder(std::vector<glm::vec4>& cylinder_vertices, std::vector<glm:
 
 		cylinder_vertices.push_back(start);
 		cylinder_vertices.push_back(end);
-
 		cylinder_faces.push_back(glm::uvec2(cylinder_vertices.size()-2, cylinder_vertices.size()-1));
 	}
-
 }
 
 int intersects(const struct Mesh &mesh, const glm::vec3& origin, const glm::vec3& direction) {
+
 	for (int i = 0; i < mesh.skeleton.bones.size(); i++) {
 		float t = 0.0;
 		const Bone& currBone = mesh.skeleton.bones[i];
@@ -73,12 +72,13 @@ bool RayIntersectCylinder(const struct Mesh& mesh, const int boneIndex, const gl
 	bool t1InRange = z1 >= 0 && z1 <= height;
 	bool t2InRange = z2 >= 0 && z2 <= height;
 
-	if (t1InRange && t2InRange) {
-		// t = std::min(t1,t2);
-		if (t1 > t2)
-			t = &t2;
-		else t = &t1;
-	}
+	// if (t1InRange && t2InRange) {
+
+	// 	// t = std::min(t1,t2);
+	// 	if (t1 > t2)
+	// 		t = &t2;
+	// 	else t = &t1;
+	// }
 
 	return t1InRange || t2InRange;
 }
@@ -106,12 +106,10 @@ void create_bones(struct Mesh& mesh, std::vector<glm::vec4>& bone_vertices, std:
 	Joint& root = skeleton.joints[skeleton.rootJoint];
 	
 	recurse_joint_t(mesh, glm::mat4(1.0f), root, root.offset, bone_vertices, bone_faces);
-
-	// for (int i = 0; i < skeleton.bones.size(); i++) {
-	// 	std::cout << "root joint id: " << skeleton.bones[i].jointStart << " child joint id: " << skeleton.bones[i].jointEnd << std::endl;
-	// 	std::cout << glm::to_string(skeleton.bones[i].translation) << std::endl;
-	// 	std::cout << glm::to_string(skeleton.bones[i].rotation) << std::endl;
-
+	// for (int i = ; i < 2; i++) {
+	// std::cout << "bones size: " << skeleton.bones.size() << std::endl;
+		// std::cout << "translation: " << glm::to_string(mesh.skeleton.bones[2].translation) << std::endl;
+		// std::cout << "rotation: " << glm::to_string(mesh.skeleton.bones[2].rotation) << std::endl;
 	// }
 }
 

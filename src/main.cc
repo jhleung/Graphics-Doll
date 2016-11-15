@@ -12,6 +12,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <math.h>
 
 #include <glm/gtx/component_wise.hpp>
 #include <glm/gtx/rotate_vector.hpp>
@@ -116,12 +117,6 @@ int main(int argc, char* argv[])
 	std::vector<glm::vec4> bone_vertices;
 	std::vector<glm::uvec2> bone_faces;
 	create_bones(mesh, bone_vertices, bone_faces);
-	// std::cout << "Loaded bones with  " << bone_vertices.size()
-	// 	<< " vertices and " << bone_faces.size() << " faces.\n";
-	// for (int i = 0; i < bone_vertices.size(); i++){
-	// 	printf("%f, %f, %f\n",bone_vertices[i].x, bone_vertices[i].y, bone_vertices[i].z );
-	// 	// std::cout << bone_vertices[i].x << " " << bone_vertices[i].y << " " << bone_vertices[i].z << std::endl;
-	// }
 
 	std::vector<glm::vec4> cylinder_vertices;
 	std::vector<glm::uvec2> cylinder_faces;
@@ -167,11 +162,13 @@ int main(int argc, char* argv[])
 		return &floor_model_matrix[0][0];
 	}; // This return model matrix for the floor.
 
-	// BONES
-	// glm::mat4 bone_model_matrix = glm::mat4(1.0f);
-	// auto bone_model_data = [&bone_model_matrix]() -> const void* {
-	// 	return &bone_model_matrix[0][0];
-	// }; // This return model matrix for the floor.
+	
+	auto std_cyl_data = [&mesh, &gui]() -> const void* {
+		return &(mesh.skeleton.bones[gui.getCurrentBone()].transformation[0][0]);
+	};
+	auto std_bone_len_data = [&mesh, &gui]() -> const void* {
+		return &(mesh.skeleton.bones[gui.getCurrentBone()].length);
+	};
 
 
 	auto std_view_data = [&mats]() -> const void* {
@@ -197,6 +194,9 @@ int main(int argc, char* argv[])
 
 	// FIXME: add more lambdas for data_source if you want to use RenderPass.
 	//        Otherwise, do whatever you like here
+	ShaderUniform std_cylinder = { "transformation", matrix_binder, std_cyl_data };
+	ShaderUniform std_bone_len = { "bone_length", float_binder, std_bone_len_data};
+
 	ShaderUniform std_model = { "model", matrix_binder, std_model_data };
 	ShaderUniform floor_model = { "model", matrix_binder, floor_model_data };
 	ShaderUniform std_view = { "view", matrix_binder, std_view_data };
@@ -206,7 +206,6 @@ int main(int argc, char* argv[])
 	ShaderUniform object_alpha = { "alpha", float_binder, alpha_data };
 	// FIXME: define more ShaderUniforms for RenderPass if you want to use it.
 	//        Otherwise, do whatever you like here
-	//ShaderUniform bone_model = { "model", matrix_binder, bone_model_data };
 
 
 	std::vector<glm::vec2>& uv_coordinates = mesh.uv_coordinates;
@@ -242,12 +241,12 @@ int main(int argc, char* argv[])
 			);
 
 	RenderDataInput cyl_pass_input;
-	bone_pass_input.assign(0, "vertex_position", cylinder_vertices.data(), cylinder_vertices.size(), 4, GL_FLOAT);
-	bone_pass_input.assign_index(cylinder_faces.data(), cylinder_faces.size(), 2);
+	cyl_pass_input.assign(0, "vertex_position", cylinder_vertices.data(), cylinder_vertices.size(), 4, GL_FLOAT);
+	cyl_pass_input.assign_index(cylinder_faces.data(), cylinder_faces.size(), 2);
 	RenderPass cyl_pass(-1,
 			cyl_pass_input,
 			{ cyl_vertex_shader, nullptr, cyl_fragment_shader},
-			{ std_model, std_view, std_proj, std_light },
+			{ std_model, std_view, std_proj, std_cylinder, std_bone_len},
 			{ "fragment_color" }
 			);
 
@@ -293,11 +292,16 @@ int main(int argc, char* argv[])
 #endif
 		// FIXME: Draw bones first.
 		// Then draw floor.
+		if (draw_cylinder) {
+			std::cout << "currBonelen " << mesh.skeleton.bones[gui.getCurrentBone()].length << std::endl;
+
+			cyl_pass.setup();
+			CHECK_GL_ERROR(glDrawElements(GL_LINES, cylinder_faces.size() * 2, GL_UNSIGNED_INT, 0));
+
+		}
 		if (draw_skeleton) {
 			bone_pass.setup();
 			CHECK_GL_ERROR(glDrawElements(GL_LINES, bone_faces.size() * 2, GL_UNSIGNED_INT, 0));
-			cyl_pass.setup();
-			CHECK_GL_ERROR(glDrawElements(GL_LINES, cylinder_faces.size() * 2, GL_UNSIGNED_INT, 0));
 		}
 		if (draw_floor) {
 			floor_pass.setup();
