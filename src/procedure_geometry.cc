@@ -3,6 +3,7 @@
 #include "config.h"
 #include <glm/ext.hpp>
 #include <iostream>
+#include <math.h>
 
 void create_floor(std::vector<glm::vec4>& floor_vertices, std::vector<glm::uvec3>& floor_faces)
 {
@@ -12,6 +13,74 @@ void create_floor(std::vector<glm::vec4>& floor_vertices, std::vector<glm::uvec3
 	floor_vertices.push_back(glm::vec4(kFloorXMin, kFloorY, kFloorZMin, 1.0f));
 	floor_faces.push_back(glm::uvec3(0, 1, 2));
 	floor_faces.push_back(glm::uvec3(2, 3, 0));
+}
+
+void create_cylinder(std::vector<glm::vec4>& cylinder_vertices, std::vector<glm::uvec2>& cylinder_faces) {
+	for (int i = 0; i < 11; i++) {
+		float y = i/10;
+		//float theta = 2*M_PI*y;
+		glm::vec4 start = glm::vec4(0.0f, y, 0.0f, 1.0f);
+		glm::vec4 end = glm::vec4(0.0f, y, 1.0f, 1.0f);
+		// glm::vec4 start = glm::vec4(std::cos(theta), std::sin(theta), 0.0f, 1.0f);
+		// glm::vec4 end = glm::vec4(std::cos(theta), std::sin(theta), endTemp[2], 1.0f);
+
+		cylinder_vertices.push_back(start);
+		cylinder_vertices.push_back(end);
+
+		cylinder_faces.push_back(glm::uvec2(cylinder_vertices.size()-2, cylinder_vertices.size()-1));
+	}
+
+}
+
+int intersects(const struct Mesh &mesh, const glm::vec3& origin, const glm::vec3& direction) {
+	for (int i = 0; i < mesh.skeleton.bones.size(); i++) {
+		float t = 0.0;
+		const Bone& currBone = mesh.skeleton.bones[i];
+		if (RayIntersectCylinder(mesh, i, origin, direction, kCylinderRadius, currBone.length, &t)) {
+			return i;
+		}
+	}
+	return -1; // found no intersections
+}
+
+// infinite number of circles -> cylinder
+// see if ray intersects, translate world_coords to bone coords
+// solve equation of circle for t1,t2 using quadratic equation
+// see if any t1, t2 satisfies the range -> return true
+// if both satisfy, pick the smaller of the two
+bool RayIntersectCylinder(const struct Mesh& mesh, const int boneIndex, const glm::vec3& origin, const glm::vec3& direction, float radius, float height, float* t) {	
+	const Bone currBone = mesh.skeleton.bones[boneIndex];
+	glm::vec3 alignedOrigin = glm::vec3(glm::inverse(currBone.transformation) * glm::vec4(origin, 1.0f)); // along z axis
+	glm::vec3 alignedDirection = glm::vec3(glm::inverse(currBone.transformation) * glm::vec4(direction, 0.0f));
+
+	float x_p = alignedOrigin.x;
+	float x_d = alignedDirection.x;
+	float y_p = alignedOrigin.y;
+	float y_d = alignedDirection.y;
+
+	float a = y_d*y_d + x_d*x_d;
+	float b = 2 * y_d * y_p + 2* x_d * x_p;
+	float c = x_p*x_p + y_p*y_p - radius*radius;
+
+	if ((b*b - 4*a*c) < 0) // determinant
+		return false;
+
+	float t1 = (-b + sqrt(b*b - 4*a*c)) / (2*a);
+	float t2 = (-b - sqrt(b*b - 4*a*c)) / (2*a);
+
+	float z1 = alignedOrigin.z + t1*alignedDirection.z;
+	float z2 = alignedOrigin.z + t2*alignedDirection.z;
+	bool t1InRange = z1 >= 0 && z1 <= height;
+	bool t2InRange = z2 >= 0 && z2 <= height;
+
+	if (t1InRange && t2InRange) {
+		// t = std::min(t1,t2);
+		if (t1 > t2)
+			t = &t2;
+		else t = &t1;
+	}
+
+	return t1InRange || t2InRange;
 }
 
 // FIXME: create cylinders and lines for the bones
@@ -46,25 +115,6 @@ void create_bones(struct Mesh& mesh, std::vector<glm::vec4>& bone_vertices, std:
 	// }
 }
 
-
-void recurse_joint(struct Mesh mesh, struct Joint parent, glm::vec3 offsetSoFar, std::vector<glm::vec4>& bone_vertices, std::vector<glm::uvec2>& bone_faces) {
-	for (int i = 0; i < parent.children.size(); i++) {
-		int currJointIndex = parent.children[i];
-		Joint currJoint = mesh.skeleton.joints[currJointIndex];
-		glm::vec3 jointStartCoords = offsetSoFar;
-		glm::vec4 startVertices = glm::vec4(jointStartCoords[0], jointStartCoords[1], jointStartCoords[2], 1.0f);
-
-		glm::vec3 jointEndCoords = currJoint.offset + offsetSoFar;
-		glm::vec4 endVertices = glm::vec4(jointEndCoords[0], jointEndCoords[1], jointEndCoords[2], 1.0f);
-		
-		bone_vertices.push_back(startVertices);
-		bone_vertices.push_back(endVertices);
-
-		bone_faces.push_back(glm::uvec2(bone_vertices.size()-2, bone_vertices.size()-1));
-
-		recurse_joint(mesh, currJoint, jointEndCoords, bone_vertices, bone_faces);
-	}
-}
 
 void recurse_joint_t(struct Mesh& mesh, glm::mat4 transformationSoFar, struct Joint parent, glm::vec3 offsetSoFar, std::vector<glm::vec4>& bone_vertices, std::vector<glm::uvec2>& bone_faces) {
 	for (int i = 0; i < parent.children.size(); i++) {
@@ -106,11 +156,13 @@ void recurse_joint_t(struct Mesh& mesh, glm::mat4 transformationSoFar, struct Jo
 		transformationSoFar = transformationSoFar * currBone.rotation;
 		glm::vec4 vertEnd = transformationSoFar * glm::vec4(0.0f, 0.0f, currBone.length, 1.0f);
 
+		currBone.transformation = transformationSoFar;
+
 		bone_vertices.push_back(vertStart);
 		bone_vertices.push_back(vertEnd);
 
 		bone_faces.push_back(glm::uvec2(bone_vertices.size()-2, bone_vertices.size()-1));
-		
+
 		recurse_joint_t(mesh, transformationSoFar, currJoint, jointEndCoords, bone_vertices, bone_faces);
 	}
 }

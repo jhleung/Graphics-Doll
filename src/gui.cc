@@ -2,6 +2,7 @@
 #include "config.h"
 #include <jpegio.h>
 #include "bone_geometry.h"
+#include "procedure_geometry.h"
 #include "jpegio.cc"
 
 #include <iostream>
@@ -77,11 +78,8 @@ void GUI::keyCallback(int key, int scancode, int action, int mods)
 	}
 	else if (key == GLFW_KEY_J && action != GLFW_RELEASE) {
 		unsigned char*  data = new unsigned char[window_width_ * window_height_ * 3];
-		glReadPixels(0,0,window_width_,window_height_,GL_RGB,GL_UNSIGNED_BYTE,data);
-		SaveJPEG("../Screenshot.jpg",
-              window_width_,
-              window_height_,
-              data);
+		glReadPixels(0, 0, window_width_, window_height_, GL_RGB, GL_UNSIGNED_BYTE, data);
+		SaveJPEG("../Screenshot.jpg", window_width_, window_height_, data);
 		delete [] data;
 	}
 }
@@ -118,9 +116,15 @@ void GUI::mousePosCallback(double mouse_x, double mouse_y)
 		// FIXME: Handle bone rotation
 		return ;
 	}
-
 	// FIXME: highlight bones that have been moused over
-	current_bone_ = -1;
+	glm::vec3 screenStartPos = glm::vec3(current_x_, current_y_, 0.0f);
+	glm::vec3 screenEndPos = glm::vec3(current_x_, current_y_, 1.0f);
+
+	glm::vec3 worldCoordsStart = glm::unProject(screenStartPos, view_matrix_, projection_matrix_, viewport);
+	glm::vec3 worldCoordsEnd = glm::unProject(screenEndPos, view_matrix_, projection_matrix_, viewport);
+
+	current_bone_ = intersects(*(mesh_), eye_, glm::normalize(worldCoordsEnd - worldCoordsStart));
+	// std::cout << "curr bone: " << current_bone_ << std::endl;
 }
 
 void GUI::mouseButtonCallback(int button, int action, int mods)

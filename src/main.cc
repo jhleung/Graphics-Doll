@@ -46,6 +46,13 @@ const char* bone_fragment_shader =
 #include "shaders/bone.frag"
 ;
 
+const char* cyl_vertex_shader =
+#include "shaders/cylinder.vert"
+;
+
+const char* cyl_fragment_shader =
+#include "shaders/cylinder.frag"
+;
 
 // FIXME: Add more shaders here.
 
@@ -114,8 +121,11 @@ int main(int argc, char* argv[])
 	// for (int i = 0; i < bone_vertices.size(); i++){
 	// 	printf("%f, %f, %f\n",bone_vertices[i].x, bone_vertices[i].y, bone_vertices[i].z );
 	// 	// std::cout << bone_vertices[i].x << " " << bone_vertices[i].y << " " << bone_vertices[i].z << std::endl;
-
 	// }
+
+	std::vector<glm::vec4> cylinder_vertices;
+	std::vector<glm::uvec2> cylinder_faces;
+	create_cylinder(cylinder_vertices, cylinder_faces);
 	/*
 	 * GUI object needs the mesh object for bone manipulation.
 	 */
@@ -231,7 +241,16 @@ int main(int argc, char* argv[])
 			{ "fragment_color" }
 			);
 
-	
+	RenderDataInput cyl_pass_input;
+	bone_pass_input.assign(0, "vertex_position", cylinder_vertices.data(), cylinder_vertices.size(), 4, GL_FLOAT);
+	bone_pass_input.assign_index(cylinder_faces.data(), cylinder_faces.size(), 2);
+	RenderPass cyl_pass(-1,
+			cyl_pass_input,
+			{ cyl_vertex_shader, nullptr, cyl_fragment_shader},
+			{ std_model, std_view, std_proj, std_light },
+			{ "fragment_color" }
+			);
+
 	RenderDataInput floor_pass_input;
 	floor_pass_input.assign(0, "vertex_position", floor_vertices.data(), floor_vertices.size(), 4, GL_FLOAT);
 	floor_pass_input.assign_index(floor_faces.data(), floor_faces.size(), 3);
@@ -277,6 +296,8 @@ int main(int argc, char* argv[])
 		if (draw_skeleton) {
 			bone_pass.setup();
 			CHECK_GL_ERROR(glDrawElements(GL_LINES, bone_faces.size() * 2, GL_UNSIGNED_INT, 0));
+			cyl_pass.setup();
+			CHECK_GL_ERROR(glDrawElements(GL_LINES, cylinder_faces.size() * 2, GL_UNSIGNED_INT, 0));
 		}
 		if (draw_floor) {
 			floor_pass.setup();

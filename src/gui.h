@@ -40,6 +40,7 @@ public:
 	bool setCurrentBone(int i);
 
 	bool isTransparent() const { return transparent_; }
+
 private:
 	GLFWwindow* window_;
 	Mesh* mesh_;

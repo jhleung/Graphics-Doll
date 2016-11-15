@@ -105,6 +105,7 @@ src/CMakeFiles/skinning.dir/gui.cc.o
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/config.h
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/gui.cc
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/gui.h
+ /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.h
  /usr/local/include/GLFW/glfw3.h
 src/CMakeFiles/skinning.dir/main.cc.o
  ../lib/debuggl.h
@@ -162,6 +163,8 @@ src/CMakeFiles/skinning.dir/main.cc.o
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/render_pass.h
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/bone.frag
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/bone.vert
+ /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/cylinder.frag
+ /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/cylinder.vert
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/default.frag
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/default.geom
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/default.vert

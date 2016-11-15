@@ -43,6 +43,7 @@ struct Bone {
 	glm::vec3 b; // binormal direction
 	glm::mat4 translation;
 	glm::mat4 rotation;
+	glm::mat4 transformation;
 	// orientation matrix is just tnb
 	// transformation matrices (translate/rotation)
 
