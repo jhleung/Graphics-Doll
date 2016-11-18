@@ -56,7 +56,11 @@ void Mesh::loadpmd(const std::string& fn)
 		if (parent == -1) {
 			skeleton.rootJoint = id;
 			Bone bone;
+			bone.transformation = glm::mat4(1);
 			skeleton.bones.push_back(bone);
+			joint.inBone = 0;
+
+
 		} else {
 			Bone bone;
 			
@@ -115,6 +119,7 @@ void Mesh::loadpmd(const std::string& fn)
 	// FIXME: load skeleton and blend weights from PMD file
 	//        also initialize the skeleton as needed
 }
+
 
 void Mesh::updateAnimation()
 {

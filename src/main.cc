@@ -38,6 +38,7 @@ const char* fragment_shader =
 const char* floor_fragment_shader =
 #include "shaders/floor.frag"
 ;
+// FIXME: Add more shaders here.
 
 const char* bone_vertex_shader =
 #include "shaders/bone.vert"
@@ -55,8 +56,21 @@ const char* cyl_fragment_shader =
 #include "shaders/cylinder.frag"
 ;
 
-// FIXME: Add more shaders here.
+const char* norm_vertex_shader =
+#include "shaders/norm.vert"
+;
 
+const char* norm_fragment_shader =
+#include "shaders/norm.frag"
+;
+
+const char* binorm_vertex_shader =
+#include "shaders/norm.vert"
+;
+
+const char* binorm_fragment_shader =
+#include "shaders/binorm.frag"
+;
 void ErrorCallback(int error, const char* description) {
 	std::cerr << "GLFW Error: " << description << "\n";
 }
@@ -120,7 +134,13 @@ int main(int argc, char* argv[])
 
 	std::vector<glm::vec4> cylinder_vertices;
 	std::vector<glm::uvec2> cylinder_faces;
-	create_cylinder(cylinder_vertices, cylinder_faces);
+	std::vector<glm::vec4> norm_vertices;
+	std::vector<glm::uvec2> norm_faces;
+	std::vector<glm::vec4> binorm_vertices;
+	std::vector<glm::uvec2> binorm_faces;
+
+	create_cylinder(cylinder_vertices, cylinder_faces, norm_vertices, norm_faces, binorm_vertices, binorm_faces);
+
 	/*
 	 * GUI object needs the mesh object for bone manipulation.
 	 */
@@ -164,12 +184,20 @@ int main(int argc, char* argv[])
 
 	
 	auto std_cyl_data = [&mesh, &gui]() -> const void* {
-		return &(mesh.skeleton.bones[gui.getCurrentBone()].transformation[0][0]);
+		return &(mesh.skeleton.bones[gui.getCurrentBone()].transformation[0]);
 	};
 	auto std_bone_len_data = [&mesh, &gui]() -> const void* {
 		return &(mesh.skeleton.bones[gui.getCurrentBone()].length);
 	};
-
+	auto std_cyl_rad_data = []() -> const void* {
+		return &(kCylinderRadius);
+	};
+	auto std_norm_data = [&mesh, &gui]() -> const void* {
+		return &(mesh.skeleton.bones[gui.getCurrentBone()].transformation[0]);
+	};
+	auto std_binorm_data = [&mesh, &gui]() -> const void* {
+		return &(mesh.skeleton.bones[gui.getCurrentBone()].transformation[1]);
+	};
 
 	auto std_view_data = [&mats]() -> const void* {
 		return mats.view;
@@ -196,6 +224,9 @@ int main(int argc, char* argv[])
 	//        Otherwise, do whatever you like here
 	ShaderUniform std_cylinder = { "transformation", matrix_binder, std_cyl_data };
 	ShaderUniform std_bone_len = { "bone_length", float_binder, std_bone_len_data};
+	ShaderUniform std_cyl_radius = { "cyl_radius", float_binder, std_cyl_rad_data};
+	ShaderUniform std_norm = { "normal", vector_binder, std_norm_data};
+	ShaderUniform std_binorm = { "binormal", vector_binder, std_binorm_data};
 
 	ShaderUniform std_model = { "model", matrix_binder, std_model_data };
 	ShaderUniform floor_model = { "model", matrix_binder, floor_model_data };
@@ -246,7 +277,28 @@ int main(int argc, char* argv[])
 	RenderPass cyl_pass(-1,
 			cyl_pass_input,
 			{ cyl_vertex_shader, nullptr, cyl_fragment_shader},
-			{ std_model, std_view, std_proj, std_cylinder, std_bone_len},
+			{ std_model, std_view, std_proj, std_cylinder, std_bone_len, std_cyl_radius},
+			{ "fragment_color" }
+			);
+
+	RenderDataInput norm_pass_input;
+	norm_pass_input.assign(0, "vertex_position", norm_vertices.data(), norm_vertices.size(), 4, GL_FLOAT);
+	norm_pass_input.assign_index(norm_faces.data(), norm_faces.size(), 2);
+	RenderPass norm_pass(-1,
+			norm_pass_input,
+			{ norm_vertex_shader, nullptr, norm_fragment_shader},
+			{ std_model, std_view, std_proj, std_cylinder},
+			{ "fragment_color" }
+			);
+
+
+	RenderDataInput binorm_pass_input;
+	binorm_pass_input.assign(0, "vertex_position", binorm_vertices.data(), binorm_vertices.size(), 4, GL_FLOAT);
+	binorm_pass_input.assign_index(binorm_faces.data(), binorm_faces.size(), 2);
+	RenderPass binorm_pass(-1,
+			binorm_pass_input,
+			{ norm_vertex_shader, nullptr, binorm_fragment_shader},
+			{ std_model, std_view, std_proj, std_cylinder},
 			{ "fragment_color" }
 			);
 
@@ -293,13 +345,20 @@ int main(int argc, char* argv[])
 		// FIXME: Draw bones first.
 		// Then draw floor.
 		if (draw_cylinder) {
-			std::cout << "currBonelen " << mesh.skeleton.bones[gui.getCurrentBone()].length << std::endl;
-
 			cyl_pass.setup();
 			CHECK_GL_ERROR(glDrawElements(GL_LINES, cylinder_faces.size() * 2, GL_UNSIGNED_INT, 0));
 
+			norm_pass.setup();
+			CHECK_GL_ERROR(glDrawElements(GL_LINES, norm_faces.size() * 2, GL_UNSIGNED_INT, 0));
+
+			binorm_pass.setup();
+			CHECK_GL_ERROR(glDrawElements(GL_LINES, binorm_faces.size() * 2, GL_UNSIGNED_INT, 0));
+
 		}
 		if (draw_skeleton) {
+			// if (gui.isPoseDirty()) {
+			// 	gui.clearPose();
+			// }
 			bone_pass.setup();
 			CHECK_GL_ERROR(glDrawElements(GL_LINES, bone_faces.size() * 2, GL_UNSIGNED_INT, 0));
 		}
@@ -314,6 +373,33 @@ int main(int argc, char* argv[])
 				object_pass.updateVBO(0,
 						      mesh.animated_vertices.data(),
 						      mesh.animated_vertices.size());
+			
+				bone_vertices.clear();
+				bone_faces.clear();
+				// redraw_skel(mesh, mesh.skeleton.joints[mesh.skeleton.rootJoint],bone_vertices, bone_faces);
+				redraw_skeleton(mesh, bone_vertices, bone_faces);
+				// struct Mesh& mesh, struct Joint parent, glm::vec3 offsetSoFar, std::vector<glm::vec4>& bone_vertices, std::vector<glm::uvec2>& bone_faces
+				// Bone& currBone = mesh.skeleton.bones[current_bone];
+				// Joint end = mesh.skeleton.joints[currBone.jointEnd];
+				// glm::vec3 currBoneWC = glm::vec3(currBone.transformation * glm::vec4(0.0f, 0.0f, currBone.length, 1.0f));
+				// recurse_joint_t(mesh, end, currBoneWC, bone_vertices, bone_faces);
+
+
+				bone_pass.updateVBO(0,bone_vertices.data(), bone_vertices.size());
+
+				cylinder_vertices.clear();
+				cylinder_faces.clear();
+				norm_vertices.clear();
+				norm_faces.clear();
+				binorm_vertices.clear();
+				binorm_faces.clear();
+
+				create_cylinder(cylinder_vertices, cylinder_faces, norm_vertices, norm_faces, binorm_vertices, binorm_faces);
+
+				cyl_pass.updateVBO(0,cylinder_vertices.data(), cylinder_vertices.size());
+				norm_pass.updateVBO(0,norm_vertices.data(), norm_vertices.size());
+				binorm_pass.updateVBO(0,binorm_vertices.data(), binorm_vertices.size());
+
 #if 0
 				// For debugging if you need it.
 				for (int i = 0; i < 4; i++) {

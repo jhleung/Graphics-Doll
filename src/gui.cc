@@ -10,6 +10,8 @@
 #include <glm/gtc/matrix_access.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
+#include <glm/ext.hpp>
+
 namespace {
 	// Intersect a cylinder with radius 1/2, height 1, with base centered at
 	// (0, 0, 0) and up direction (0, 1, 0).
@@ -114,7 +116,70 @@ void GUI::mousePosCallback(double mouse_x, double mouse_y)
 		look_ = glm::column(orientation_, 2);
 	} else if (drag_bone && current_bone_ != -1) {
 		// FIXME: Handle bone rotation
-		return ;
+		float dx = (float) current_x_ - last_x_;
+		float dy = (float) current_y_ - last_y_;
+		glm::vec2 norm_delt = glm::normalize(glm::vec2(dx, dy));
+		glm::vec3 axis = 1.0f * norm_delt.y * tangent_ + norm_delt.x * up_;
+
+		Bone& currBone = mesh_->skeleton.bones[current_bone_];
+		// get parent's accumulated matrix and use it to update child's accumulated
+		// so parent*translation*new rotation
+
+		glm::mat4 rotate_matrix = glm::rotate(rotation_speed_, axis) * currBone.rotation;
+		// currBone.rotation = rotate_matrix;
+
+		Joint start = mesh_->skeleton.joints[currBone.jointStart];
+		Bone parentBone = mesh_->skeleton.bones[start.inBone];
+
+		currBone.transformation = currBone.transformation * glm::inverse(currBone.rotation) * rotate_matrix;
+		currBone.rotation = rotate_matrix;
+
+//		currBone.transformation = parentBone.transformation * currBone.translation * rotate_matrix;
+
+		update_child_transformations(*mesh_, current_bone_);
+
+		// Joint end = mesh_->skeleton.joints[currBone.jointEnd];
+		// glm::vec4 currBoneWC = currBone.transformation * glm::vec4(0.0f, 0.0f, currBone.length, 1.0f);
+		// for (int i = 0; i < end.outBones.size(); i++) {	
+		// 	Bone& currChildBone = mesh_->skeleton.bones[end.outBones[i]];
+
+		// 	glm::vec4 translationCoords = glm::inverse(currBone.transformation) * glm::vec4(glm::vec3(currBoneWC), 1.0f);
+		// 	currChildBone.translation = glm::transpose(glm::mat4(1.0f, 0.0f, 0.0f, translationCoords[0],
+		// 												0.0f, 1.0f, 0.0f, translationCoords[1],
+		// 												0.0f, 0.0f, 1.0f, translationCoords[2],
+		// 												0.0f, 0.0f, 0.0f, 1.0f));
+
+		// 	glm::mat4 transformationSoFar = currBone.transformation * currChildBone.translation;
+
+		// 	Joint childEnd = mesh_->skeleton.joints[currChildBone.jointEnd];
+		// 	glm::vec4 rotationCoords = (glm::inverse(transformationSoFar) * glm::vec4(glm::vec3(currBoneWC) + childEnd.offset, 1.0f)) / currChildBone.length;
+
+		// 	glm::vec3 t = glm::normalize(glm::vec3(rotationCoords));
+		// 	glm::vec3 v;
+		// 	float min = std::min(std::min(std::abs(t[0]),std::abs(t[1])),std::abs(t[2]));
+		// 	if (std::abs(t[0]) == min) {
+		// 		v = glm::vec3(1.0f, 0.0f, 0.0f);
+		// 	} else if (std::abs(t[1]) == min) {
+		// 		v = glm::vec3(0.0f, 1.0f, 0.0f);
+		// 	} else if (std::abs(t[2]) == min) {
+		// 		v = glm::vec3(0.0f, 0.0f, 1.0f);
+		// 	}
+		// 	glm::vec3 n = glm::cross(t, v) / glm::length(glm::cross(t, v)); // normalizing t x v is slightly different
+		// 	glm::vec3 b = glm::cross(t, n);
+
+		// 	currChildBone.rotation = glm::mat4(n.x, n.y, n.z, 0.0f,
+		// 								  b.x, b.y, b.z, 0.0f,
+		// 								  t.x, t.y, t.z, 0.0f,
+		// 								  0.0f, 0.0f, 0.0f, 1.0f);
+		// 	currChildBone.transformation = transformationSoFar * currChildBone.rotation;
+
+
+		// 	//currChildBone.transformation = currBone.transformation * currChildBone.translation * currChildBone.rotation;
+		// }
+
+		pose_changed_ = true;
+		// glm::mat4 deformed = glm::mat4(t,u,l, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+		// return ;
 	}
 	// FIXME: highlight bones that have been moused over
 	glm::vec3 screenStartPos = glm::vec3(current_x_, current_y_, 0.0f);

@@ -161,6 +161,7 @@ src/CMakeFiles/skinning.dir/main.cc.o
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/main.cc
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.h
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/render_pass.h
+ /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/binorm.frag
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/bone.frag
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/bone.vert
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/cylinder.frag
@@ -169,6 +170,8 @@ src/CMakeFiles/skinning.dir/main.cc.o
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/default.geom
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/default.vert
  /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/floor.frag
+ /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/norm.frag
+ /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/norm.vert
  /usr/local/include/GLFW/glfw3.h
 src/CMakeFiles/skinning.dir/procedure_geometry.cc.o
  ../lib/image.h
