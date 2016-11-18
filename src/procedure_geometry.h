@@ -18,6 +18,6 @@ void create_cylinder(std::vector<glm::vec4>& cylinder_vertices, std::vector<glm:
 					 std::vector<glm::vec4>& binorm_vertices, std::vector<glm::uvec2>& binorm_faces);
 void redraw_skeleton(struct Mesh& mesh, std::vector<glm::vec4>& bone_vertices, std::vector<glm::uvec2>& bone_faces);
 
-void redraw_skel(struct Mesh& mesh, struct Joint parent, std::vector<glm::vec4>& bone_vertices, std::vector<glm::uvec2>& bone_faces);
-void update_child_transformations(struct Mesh& mesh, int current_bone); // Joint parent);
+//void redraw_skel(struct Mesh& mesh, struct Joint parent, std::vector<glm::vec4>& bone_vertices, std::vector<glm::uvec2>& bone_faces);
+void update_child_transformations(struct Mesh& mesh, int current_bone);
 #endif

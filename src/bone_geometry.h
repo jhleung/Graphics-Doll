@@ -44,6 +44,8 @@ struct Bone {
 	glm::mat4 translation;
 	glm::mat4 rotation;
 	glm::mat4 transformation;
+	glm::mat4 oldTransformation;
+	glm::mat4 blending;
 	// orientation matrix is just tnb
 	// transformation matrices (translate/rotation)
 
@@ -54,6 +56,7 @@ struct Skeleton {
 	int rootJoint;
 	std::vector<Bone> bones;
 	std::vector<Joint> joints;
+	bool dirty = false;
 };
 
 

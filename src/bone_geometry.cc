@@ -100,7 +100,7 @@ void Mesh::loadpmd(const std::string& fn)
 			// 						  0.0f, 0.0f, 0.0f, 1.0f);
 			
 			skeleton.bones.push_back(bone);
-			int boneIndex = skeleton.bones.size()-1;
+			// int boneIndex = skeleton.bones.size()-1;
 	
 			skeleton.joints[parent].outBones.push_back(id);
 			joint.inBone = id;	
