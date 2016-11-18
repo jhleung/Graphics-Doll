@@ -38,10 +38,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin
+CMAKE_SOURCE_DIR = /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build
+CMAKE_BINARY_DIR = /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/utgraphicsutil.dir/depend.make
@@ -54,17 +54,17 @@ include CMakeFiles/utgraphicsutil.dir/flags.make
 
 CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.o: CMakeFiles/utgraphicsutil.dir/flags.make
 CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.o: ../lib/bitmap.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.o"
-	/lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.o -c /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/bitmap.cpp
+	/lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.o -c /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/bitmap.cpp
 
 CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.i"
-	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/bitmap.cpp > CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.i
+	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/bitmap.cpp > CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.i
 
 CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.s"
-	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/bitmap.cpp -o CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.s
+	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/bitmap.cpp -o CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.s
 
 CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.o.requires:
 .PHONY : CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.o.requires
@@ -77,17 +77,17 @@ CMakeFiles/utgraphicsutil.dir/lib/bitmap.cpp.o.provides.build: CMakeFiles/utgrap
 
 CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.o: CMakeFiles/utgraphicsutil.dir/flags.make
 CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.o: ../lib/debuggl.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.o"
-	/lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.o -c /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/debuggl.cc
+	/lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.o -c /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/debuggl.cc
 
 CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.i"
-	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/debuggl.cc > CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.i
+	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/debuggl.cc > CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.i
 
 CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.s"
-	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/debuggl.cc -o CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.s
+	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/debuggl.cc -o CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.s
 
 CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.o.requires:
 .PHONY : CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.o.requires
@@ -100,17 +100,17 @@ CMakeFiles/utgraphicsutil.dir/lib/debuggl.cc.o.provides.build: CMakeFiles/utgrap
 
 CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.o: CMakeFiles/utgraphicsutil.dir/flags.make
 CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.o: ../lib/jpegio.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.o"
-	/lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.o -c /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/jpegio.cc
+	/lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.o -c /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/jpegio.cc
 
 CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.i"
-	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/jpegio.cc > CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.i
+	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/jpegio.cc > CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.i
 
 CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.s"
-	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/jpegio.cc -o CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.s
+	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/jpegio.cc -o CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.s
 
 CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.o.requires:
 .PHONY : CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.o.requires
@@ -123,17 +123,17 @@ CMakeFiles/utgraphicsutil.dir/lib/jpegio.cc.o.provides.build: CMakeFiles/utgraph
 
 CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.o: CMakeFiles/utgraphicsutil.dir/flags.make
 CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.o: ../lib/mmdadapter.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.o"
-	/lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.o -c /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/mmdadapter.cc
+	/lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.o -c /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/mmdadapter.cc
 
 CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.i"
-	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/mmdadapter.cc > CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.i
+	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/mmdadapter.cc > CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.i
 
 CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.s"
-	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/mmdadapter.cc -o CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.s
+	/lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/lib/mmdadapter.cc -o CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.s
 
 CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.o.requires:
 .PHONY : CMakeFiles/utgraphicsutil.dir/lib/mmdadapter.cc.o.requires
@@ -179,6 +179,6 @@ CMakeFiles/utgraphicsutil.dir/clean:
 .PHONY : CMakeFiles/utgraphicsutil.dir/clean
 
 CMakeFiles/utgraphicsutil.dir/depend:
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles/utgraphicsutil.dir/DependInfo.cmake --color=$(COLOR)
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles/utgraphicsutil.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/utgraphicsutil.dir/depend
 

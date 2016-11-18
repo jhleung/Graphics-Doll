@@ -38,10 +38,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin
+CMAKE_SOURCE_DIR = /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build
+CMAKE_BINARY_DIR = /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build
 
 # Include any dependencies generated for this target.
 include src/CMakeFiles/skinning.dir/depend.make
@@ -54,17 +54,17 @@ include src/CMakeFiles/skinning.dir/flags.make
 
 src/CMakeFiles/skinning.dir/bone_geometry.cc.o: src/CMakeFiles/skinning.dir/flags.make
 src/CMakeFiles/skinning.dir/bone_geometry.cc.o: ../src/bone_geometry.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/skinning.dir/bone_geometry.cc.o"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/bone_geometry.cc.o -c /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/bone_geometry.cc
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/bone_geometry.cc.o -c /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/bone_geometry.cc
 
 src/CMakeFiles/skinning.dir/bone_geometry.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/skinning.dir/bone_geometry.cc.i"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/bone_geometry.cc > CMakeFiles/skinning.dir/bone_geometry.cc.i
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/bone_geometry.cc > CMakeFiles/skinning.dir/bone_geometry.cc.i
 
 src/CMakeFiles/skinning.dir/bone_geometry.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/skinning.dir/bone_geometry.cc.s"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/bone_geometry.cc -o CMakeFiles/skinning.dir/bone_geometry.cc.s
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/bone_geometry.cc -o CMakeFiles/skinning.dir/bone_geometry.cc.s
 
 src/CMakeFiles/skinning.dir/bone_geometry.cc.o.requires:
 .PHONY : src/CMakeFiles/skinning.dir/bone_geometry.cc.o.requires
@@ -77,17 +77,17 @@ src/CMakeFiles/skinning.dir/bone_geometry.cc.o.provides.build: src/CMakeFiles/sk
 
 src/CMakeFiles/skinning.dir/gui.cc.o: src/CMakeFiles/skinning.dir/flags.make
 src/CMakeFiles/skinning.dir/gui.cc.o: ../src/gui.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/skinning.dir/gui.cc.o"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/gui.cc.o -c /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/gui.cc
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/gui.cc.o -c /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/gui.cc
 
 src/CMakeFiles/skinning.dir/gui.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/skinning.dir/gui.cc.i"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/gui.cc > CMakeFiles/skinning.dir/gui.cc.i
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/gui.cc > CMakeFiles/skinning.dir/gui.cc.i
 
 src/CMakeFiles/skinning.dir/gui.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/skinning.dir/gui.cc.s"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/gui.cc -o CMakeFiles/skinning.dir/gui.cc.s
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/gui.cc -o CMakeFiles/skinning.dir/gui.cc.s
 
 src/CMakeFiles/skinning.dir/gui.cc.o.requires:
 .PHONY : src/CMakeFiles/skinning.dir/gui.cc.o.requires
@@ -100,17 +100,17 @@ src/CMakeFiles/skinning.dir/gui.cc.o.provides.build: src/CMakeFiles/skinning.dir
 
 src/CMakeFiles/skinning.dir/main.cc.o: src/CMakeFiles/skinning.dir/flags.make
 src/CMakeFiles/skinning.dir/main.cc.o: ../src/main.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/skinning.dir/main.cc.o"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/main.cc.o -c /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/main.cc
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/main.cc.o -c /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/main.cc
 
 src/CMakeFiles/skinning.dir/main.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/skinning.dir/main.cc.i"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/main.cc > CMakeFiles/skinning.dir/main.cc.i
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/main.cc > CMakeFiles/skinning.dir/main.cc.i
 
 src/CMakeFiles/skinning.dir/main.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/skinning.dir/main.cc.s"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/main.cc -o CMakeFiles/skinning.dir/main.cc.s
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/main.cc -o CMakeFiles/skinning.dir/main.cc.s
 
 src/CMakeFiles/skinning.dir/main.cc.o.requires:
 .PHONY : src/CMakeFiles/skinning.dir/main.cc.o.requires
@@ -123,17 +123,17 @@ src/CMakeFiles/skinning.dir/main.cc.o.provides.build: src/CMakeFiles/skinning.di
 
 src/CMakeFiles/skinning.dir/procedure_geometry.cc.o: src/CMakeFiles/skinning.dir/flags.make
 src/CMakeFiles/skinning.dir/procedure_geometry.cc.o: ../src/procedure_geometry.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/skinning.dir/procedure_geometry.cc.o"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/procedure_geometry.cc.o -c /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.cc
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/procedure_geometry.cc.o -c /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.cc
 
 src/CMakeFiles/skinning.dir/procedure_geometry.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/skinning.dir/procedure_geometry.cc.i"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.cc > CMakeFiles/skinning.dir/procedure_geometry.cc.i
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.cc > CMakeFiles/skinning.dir/procedure_geometry.cc.i
 
 src/CMakeFiles/skinning.dir/procedure_geometry.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/skinning.dir/procedure_geometry.cc.s"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.cc -o CMakeFiles/skinning.dir/procedure_geometry.cc.s
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.cc -o CMakeFiles/skinning.dir/procedure_geometry.cc.s
 
 src/CMakeFiles/skinning.dir/procedure_geometry.cc.o.requires:
 .PHONY : src/CMakeFiles/skinning.dir/procedure_geometry.cc.o.requires
@@ -146,17 +146,17 @@ src/CMakeFiles/skinning.dir/procedure_geometry.cc.o.provides.build: src/CMakeFil
 
 src/CMakeFiles/skinning.dir/render_pass.cc.o: src/CMakeFiles/skinning.dir/flags.make
 src/CMakeFiles/skinning.dir/render_pass.cc.o: ../src/render_pass.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/skinning.dir/render_pass.cc.o"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/render_pass.cc.o -c /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/render_pass.cc
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/render_pass.cc.o -c /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/render_pass.cc
 
 src/CMakeFiles/skinning.dir/render_pass.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/skinning.dir/render_pass.cc.i"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/render_pass.cc > CMakeFiles/skinning.dir/render_pass.cc.i
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/render_pass.cc > CMakeFiles/skinning.dir/render_pass.cc.i
 
 src/CMakeFiles/skinning.dir/render_pass.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/skinning.dir/render_pass.cc.s"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/render_pass.cc -o CMakeFiles/skinning.dir/render_pass.cc.s
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && /lusr/opt/gcc-5.2.0/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/render_pass.cc -o CMakeFiles/skinning.dir/render_pass.cc.s
 
 src/CMakeFiles/skinning.dir/render_pass.cc.o.requires:
 .PHONY : src/CMakeFiles/skinning.dir/render_pass.cc.o.requires
@@ -192,7 +192,7 @@ bin/skinning: /usr/lib/x86_64-linux-gnu/libjpeg.so
 bin/skinning: /usr/lib/x86_64-linux-gnu/libGLEW.so
 bin/skinning: src/CMakeFiles/skinning.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable ../bin/skinning"
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/skinning.dir/link.txt --verbose=$(VERBOSE)
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/skinning.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/CMakeFiles/skinning.dir/build: bin/skinning
@@ -206,10 +206,10 @@ src/CMakeFiles/skinning.dir/requires: src/CMakeFiles/skinning.dir/render_pass.cc
 .PHONY : src/CMakeFiles/skinning.dir/requires
 
 src/CMakeFiles/skinning.dir/clean:
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && $(CMAKE_COMMAND) -P CMakeFiles/skinning.dir/cmake_clean.cmake
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src && $(CMAKE_COMMAND) -P CMakeFiles/skinning.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/skinning.dir/clean
 
 src/CMakeFiles/skinning.dir/depend:
-	cd /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src /u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src/CMakeFiles/skinning.dir/DependInfo.cmake --color=$(COLOR)
+	cd /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src/CMakeFiles/skinning.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/CMakeFiles/skinning.dir/depend
 

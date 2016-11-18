@@ -111,6 +111,10 @@ void Mesh::loadpmd(const std::string& fn)
 			// }
 			//else
 			skeleton.joints[parent].children.push_back(id);
+
+			// iterate through mesh vertices and build up sparsetuples = (i,j,0)
+
+			// iterate through vector of tuples and update joints new vector of weights 
 		}
 		skeleton.joints.push_back(joint);
 		id++;

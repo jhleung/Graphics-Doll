@@ -1,2 +1,2 @@
-/u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src/CMakeFiles/skinning.dir
-/u/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles/utgraphicsutil.dir
+/v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/src/CMakeFiles/skinning.dir
+/v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/build/CMakeFiles/utgraphicsutil.dir
