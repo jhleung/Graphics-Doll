@@ -74,6 +74,7 @@ struct Mesh {
 	BoundingBox bounds;
 	Skeleton skeleton;
 
+	std::map<int, std::map<int, float>> dok;
 	void loadpmd(const std::string& fn);
 	void updateAnimation();
 	int getNumberOfBones() const 

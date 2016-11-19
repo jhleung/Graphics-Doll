@@ -116,31 +116,13 @@ void GUI::mousePosCallback(double mouse_x, double mouse_y)
 		look_ = glm::column(orientation_, 2);
 	} else if (drag_bone && current_bone_ != -1) {
 		// FIXME: Handle bone rotation
-		//glm::vec3 norm_delt = glm::normalize(glm::vec3(delta_x, delta_y, 0));
 		glm::vec3 axis = glm::cross(look_, mouse_direction);
-		//glm::vec3 axis = -1.0f * norm_delt.y * tangent_ + norm_delt.x * up_;
 
 		Bone& currBone = mesh_->skeleton.bones[current_bone_];
-		//glm::rotate(mouse_direction.x*rotation_speed_ + mouse_direction.y * rotation_speed_, look_) * currBone.rotation;
 
 		Joint start = mesh_->skeleton.joints[currBone.jointStart];
 		Bone parentBone = mesh_->skeleton.bones[start.inBone];
-
-
-
-		// currBone.S = currBone.rotation;
 		glm::mat4 rotate_matrix = glm::rotate(rotation_speed_, axis);
-
-
-
-		// currBone.S = glm::rotate(rotation_speed_, axis) * currBone.S;
-		//currBone.S = currBone.transformation * glm::inverse(currBone.rotation) * rotate_matrix;
-		// currBone.rotation = rotate_matrix * currBone.rotation;
-		// currBone.transformation = parentBone.transformation * currBone.translation * currBone.rotation;
-
-		// currBone.transformation = currBone.transformation * glm::transpose(currBone.rotation) * rotate_matrix;
-//		currBone.transformation = parentBone.transformation * currBone.translation * rotate_matrix;
-		// glm::vec4 currBoneWC = currBone.transformation * glm::vec4(0.0f, 0.0f, currBone.length, 1.0f);
 		update_transformations(*mesh_, current_bone_, rotate_matrix);
 
 		mesh_->skeleton.dirty = true;

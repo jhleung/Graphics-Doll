@@ -356,9 +356,6 @@ int main(int argc, char* argv[])
 
 		}
 		if (draw_skeleton) {
-			// if (gui.isPoseDirty()) {
-			// 	gui.clearPose();
-			// }
 			bone_pass.setup();
 			CHECK_GL_ERROR(glDrawElements(GL_LINES, bone_faces.size() * 2, GL_UNSIGNED_INT, 0));
 		}
@@ -395,6 +392,10 @@ int main(int argc, char* argv[])
 				cyl_pass.updateVBO(0,cylinder_vertices.data(), cylinder_vertices.size());
 				norm_pass.updateVBO(0,norm_vertices.data(), norm_vertices.size());
 				binorm_pass.updateVBO(0,binorm_vertices.data(), binorm_vertices.size());
+				mesh.updateAnimation();
+				object_pass.updateVBO(0,
+					      mesh.animated_vertices.data(),
+					      mesh.animated_vertices.size());
 				mesh.skeleton.dirty = false;
 			}
 			if (gui.isPoseDirty()) {
@@ -403,33 +404,6 @@ int main(int argc, char* argv[])
 						      mesh.animated_vertices.data(),
 						      mesh.animated_vertices.size());
 			
-				// bone_vertices.clear();
-				// bone_faces.clear();
-				// // create_bones(mesh, bone_vertices, bone_faces);
-				// // redraw_skel(mesh, mesh.skeleton.joints[mesh.skeleton.rootJoint],bone_vertices, bone_faces);
-				// redraw_skeleton(mesh, bone_vertices, bone_faces);
-				// // struct Mesh& mesh, struct Joint parent, glm::vec3 offsetSoFar, std::vector<glm::vec4>& bone_vertices, std::vector<glm::uvec2>& bone_faces
-				// // Bone& currBone = mesh.skeleton.bones[current_bone];
-				// // Joint end = mesh.skeleton.joints[currBone.jointEnd];
-				// // glm::vec3 currBoneWC = glm::vec3(currBone.transformation * glm::vec4(0.0f, 0.0f, currBone.length, 1.0f));
-				// // recurse_joint_t(mesh, end, currBoneWC, bone_vertices, bone_faces);
-
-
-				// bone_pass.updateVBO(0,bone_vertices.data(), bone_vertices.size());
-
-				// cylinder_vertices.clear();
-				// cylinder_faces.clear();
-				// norm_vertices.clear();
-				// norm_faces.clear();
-				// binorm_vertices.clear();
-				// binorm_faces.clear();
-
-				// create_cylinder(cylinder_vertices, cylinder_faces, norm_vertices, norm_faces, binorm_vertices, binorm_faces);
-
-				// cyl_pass.updateVBO(0,cylinder_vertices.data(), cylinder_vertices.size());
-				// norm_pass.updateVBO(0,norm_vertices.data(), norm_vertices.size());
-				// binorm_pass.updateVBO(0,binorm_vertices.data(), binorm_vertices.size());
-
 #if 0
 				// For debugging if you need it.
 				for (int i = 0; i < 4; i++) {

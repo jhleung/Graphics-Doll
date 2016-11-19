@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <glm/gtx/io.hpp>
 #include <glm/gtx/transform.hpp>
+#include <glm/ext.hpp>
 
 /*
  * For debugging purpose.
@@ -47,6 +48,7 @@ void Mesh::loadpmd(const std::string& fn)
 	int id = 0;
 	int parent = 0;
 	glm::vec3 offset = glm::vec3(0.0f,0.0f,0.0f);
+	std::vector<SparseTuple> tups;
 	while(mr.getJoint(id, offset, parent)) {
 		Joint joint;
 		joint.id = id;
@@ -58,7 +60,7 @@ void Mesh::loadpmd(const std::string& fn)
 			Bone bone;
 			bone.transformation = glm::mat4(1);
 			skeleton.bones.push_back(bone);
-			joint.inBone = 0;
+			joint.inBone = 0;	
 
 
 		} else {
@@ -69,47 +71,11 @@ void Mesh::loadpmd(const std::string& fn)
 			
 			bone.t = joint.offset;			
 			bone.length = glm::length(bone.t);
-			// bone.t = glm::normalize(bone.t);
-			// glm::vec3 v = bone.t;
-			// int min = std::min(std::min(v[0],v[1]),v[2]);
-			// if (v[0] == min) {
-			// 	v[0] = 1;
-			// 	v[1] = 0;
-			// 	v[2] = 0;
-			// } else if (v[1] == min) {
-			// 	v[1] = 1;
-			// 	v[0] = 0;
-			// 	v[2] = 0;
-			// } else if (v[2] == min) {
-			// 	v[2] = 1;
-			// 	v[0] = 0;
-			// 	v[1] = 0;
-			// }
-			// bone.n = glm::cross(bone.t, v) / glm::length(glm::cross(bone.t, v));
-			// bone.b = glm::cross(bone.t, bone.n);
-			
-
-			// bone.translation = glm::mat4(1.0f, 0.0f, 0.0f, bone.t[0],
-			// 							 0.0f, 1.0f, 0.0f, bone.t[1],
-			// 							 0.0f, 0.0f, 1.0f, bone.t[2],
-			// 						     0.0f, 0.0f, 0.0f, 1.0f);
-
-			// bone.rotation = glm::mat4(bone.t.x, bone.t.y, bone.t.z, 0.0f,
-			// 						  bone.b.x, bone.b.y, bone.b.z, 0.0f,
-			// 						  bone.n.x, bone.n.y, bone.n.z, 0.0f,
-			// 						  0.0f, 0.0f, 0.0f, 1.0f);
 			
 			skeleton.bones.push_back(bone);
-			// int boneIndex = skeleton.bones.size()-1;
 	
 			skeleton.joints[parent].outBones.push_back(id);
 			joint.inBone = id;	
-
-			// if (parent == 0) { 
-			// 	skeleton.rootJoint.children.push_back(id);
-			// 	skeleton.rootJoint.outBones.push_back(boneIndex);
-			// }
-			//else
 			skeleton.joints[parent].children.push_back(id);
 
 			// iterate through mesh vertices and build up sparsetuples = (i,j,0)
@@ -120,6 +86,20 @@ void Mesh::loadpmd(const std::string& fn)
 		id++;
 	}
 
+	mr.getJointWeights(tups);
+	for (int i = 0; i < tups.size(); i++) {
+		SparseTuple tup = tups[i];
+		int jid = tup.jid;
+		int vid = tup.vid;
+		Joint joint = skeleton.joints[jid];
+		float weight = tup.weight;
+
+		for (int b = 0; b < joint.outBones.size(); b++) {
+			int bid = joint.outBones[b];
+			dok[vid][bid] = weight;
+		}
+	}
+
 	// FIXME: load skeleton and blend weights from PMD file
 	//        also initialize the skeleton as needed
 }
@@ -128,6 +108,18 @@ void Mesh::loadpmd(const std::string& fn)
 void Mesh::updateAnimation()
 {
 	animated_vertices = vertices;
+	for (int i = 0; i < vertices.size(); i++) {
+		glm::mat4 translations = glm::mat4(0.0f);
+		for(auto const& entry : dok[i]) {
+			int bid = entry.first;
+			// float weight = entry.second;
+			Bone currBone = skeleton.bones[bid];
+			glm::mat4 x = currBone.transformation * glm::inverse(currBone.oldTransformation);
+			x = dok[i][bid] * x;
+			translations = translations + x;
+		}
+		animated_vertices[i] = translations * vertices[i];
+	}
 	// FIXME: blend the vertices to animated_vertices, rather than copy
 	//        the data directly.
 }

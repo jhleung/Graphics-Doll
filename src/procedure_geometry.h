@@ -21,6 +21,6 @@ void create_cylinder(std::vector<glm::vec4>& cylinder_vertices, std::vector<glm:
 void redraw_skeleton(struct Mesh& mesh, std::vector<glm::vec4>& bone_vertices, std::vector<glm::uvec2>& bone_faces);
 
 //void redraw_skel(struct Mesh& mesh, struct Joint parent, std::vector<glm::vec4>& bone_vertices, std::vector<glm::uvec2>& bone_faces);
-void update_child_transformations(struct Mesh& mesh, int current_bone);
+void update_child_transformations(struct Mesh& mesh, int current_bone,  glm::mat4 accumulated);
 void update_transformations(Mesh &mesh_, int current_bone, glm::mat4 rotate_matrix);
 #endif

@@ -175,49 +175,13 @@ void recurse_joint_t(struct Mesh& mesh, struct Joint parent, glm::vec3 offsetSoF
 	}
 }
 
-// void redraw_skel(struct Mesh& mesh, struct Joint parent, std::vector<glm::vec4>& bone_vertices, std::vector<glm::uvec2>& bone_faces) {
-// 	for (int i = 0; i < parent.children.size(); i++) {
-// 		Joint currJoint = mesh.skeleton.joints[parent.children[i]];
-
-// 		Bone parentBone = mesh.skeleton.bones[currJoint.inBone];
-		
-// 		Bone& currBone = mesh.skeleton.bones[parent.outBones[i]];
-		
-// 		glm::vec4 vertStart = parentBone.transformation * currBone.translation * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-// 		glm::vec4 vertEnd = parentBone.transformation * currBone.translation * currBone.rotation * glm::vec4(0.0f, 0.0f, currBone.length, 1.0f);
-
-// 		currBone.transformation = parentBone.transformation* currBone.translation * currBone.rotation;
-
-// 		bone_vertices.push_back(vertStart);
-// 		bone_vertices.push_back(vertEnd);
-// 		bone_faces.push_back(glm::uvec2(bone_vertices.size()-2, bone_vertices.size()-1));
-
-// 		redraw_skel(mesh, currJoint, bone_vertices, bone_faces);
-// 	}
-// }
-
 void update_child_transformations(struct Mesh& mesh, int current_bone, glm::mat4 accumulated) {
 	Bone& currBone = mesh.skeleton.bones[current_bone];
 	Joint& end = mesh.skeleton.joints[currBone.jointEnd];
 
 	currBone.transformation = accumulated * currBone.translation * currBone.rotation;
-	// std::cout << ""
-	//glm::vec4 currBoneWC = currBone.transformation * glm::vec4(0.0f, 0.0f, currBone.length, 1.0f) + offsetSoFar;
 	for (int i = 0; i < end.outBones.size(); i++) {	
-		// Bone& currChildBone = mesh.skeleton.bones[end.outBones[i]];
-
-		// //glm::mat4 rotate_matrix = rotate_axis * currChildBone.rotation;
-		// // currChildBone.transformation = currBone.transformation * currChildBone.translation * currChildBone.S; // dallas
-		// currChildBone.transformation = currBone.transformation * currChildBone.translation * currChildBone.rotation; // dallas
-		// std::cout << "rotation determinant: " << glm::determinant(currChildBone.rotation) << std::endl;
-		//currChildBone.transformation = currBone.transformation * currChildBone.translation * currChildBone.rotation;// 1 on board
-		// currChildBone.transformation = currChildBone.transformation * glm::inverse(currChildBone.rotation) * rotate_axis;// 2 on board
-		// currChildBone.rotation = rotate_axis * currChildBone.rotation;
-
-		// currChildBone.rotation = rotate_matrix;
-		//currChildBone.transformation = currBone.transformation * currChildBone.translation * currChildBone.rotation;
 		update_child_transformations(mesh, end.outBones[i], currBone.transformation);
-		//currChildBone.transformation = currBone.transformation * currChildBone.translation * currChildBone.rotation;
 	}
 
 }
@@ -230,17 +194,12 @@ void update_transformations(Mesh &mesh, int current_bone, glm::mat4 rotate_matri
 	currBone.t = glm::vec3(rotate_matrix * glm::vec4(currBone.t,0));
 	currBone.b = glm::vec3(rotate_matrix * glm::vec4(currBone.b,0));
 	currBone.n = glm::vec3(rotate_matrix * glm::vec4(currBone.n,0));
-	std::cout << "currBone translation: " << glm::to_string(currBone.translation) << std::endl;
-	printf("joint offset: %f, %f, %f\n", startJoint.offset.x, startJoint.offset.y, startJoint.offset.z);
-	// currBone.transformation = parentBone.transformation * currBone.translation * currBone.rotation;
-	currBone.transformation = parentBone.transformation * currBone.translation * currBone.rotation;
-	std::cout << "currBone transformation: " << glm::to_string(currBone.transformation) << std::endl;
 
-	// currBone.transformation = parentBone.transformation * currBone.rotation;
+	currBone.transformation = parentBone.transformation * currBone.translation * currBone.rotation;
 
 	Joint end = mesh.skeleton.joints[currBone.jointEnd];
 	for (int i = 0; i < end.outBones.size(); i++) {
-		update_child_transformations(mesh, end.outBones.at(i), currBone.transformation);
+		update_child_transformations(mesh, end.outBones[i], currBone.transformation);
 	}
 }
 
