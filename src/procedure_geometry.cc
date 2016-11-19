@@ -152,6 +152,9 @@ void recurse_joint_t(struct Mesh& mesh, struct Joint parent, glm::vec3 offsetSoF
 		}
 		glm::vec3 n = glm::cross(t, v) / glm::length(glm::cross(t, v)); // normalizing t x v is slightly different
 		glm::vec3 b = glm::cross(t, n);
+		currBone.t = t;
+		currBone.b = n;
+		currBone.n = b;
 
 		currBone.rotation = glm::mat4(n.x, n.y, n.z, 0.0f,
 									  b.x, b.y, b.z, 0.0f,

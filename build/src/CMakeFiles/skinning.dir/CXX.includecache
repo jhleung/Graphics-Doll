@@ -418,20 +418,6 @@ shaders/norm.vert
 shaders/binorm.frag
 /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/shaders/binorm.frag
 
-/v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.cc
-procedure_geometry.h
-/v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.h
-bone_geometry.h
-/v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/bone_geometry.h
-config.h
-/v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/config.h
-glm/ext.hpp
--
-iostream
--
-math.h
--
-
 /v/filer4b/v38q001/jleung/Downloads/CS354_Graphics/a3/VirtualMannequin/src/procedure_geometry.h
 vector
 -

@@ -64,6 +64,15 @@ void GUI::keyCallback(int key, int scancode, int action, int mods)
 			roll_speed = -roll_speed_;
 		else
 			roll_speed = roll_speed_;
+		if (bone_manip) {
+			if (current_bone_ != -1) {
+				glm::vec3 axis = mesh_->skeleton.bones[current_bone_].t;//glm::vec3(glm::column(mesh_->skeleton.bones[current_bone_].transformation, 2));
+				glm::mat4 rotate_matrix = glm::rotate(roll_speed, axis);
+				update_transformations(*mesh_, current_bone_, rotate_matrix); //rotate_matrix);
+
+				mesh_->skeleton.dirty = true;
+			}	
+		}
 		// FIXME: actually roll the bone here
 	} else if (key == GLFW_KEY_C && action != GLFW_RELEASE) {
 		fps_mode_ = !fps_mode_;
@@ -77,6 +86,9 @@ void GUI::keyCallback(int key, int scancode, int action, int mods)
 		current_bone_ %= mesh_->getNumberOfBones();
 	} else if (key == GLFW_KEY_T && action != GLFW_RELEASE) {
 		transparent_ = !transparent_;
+	}
+	else if (key == GLFW_KEY_M && action != GLFW_RELEASE) {
+		bone_manip = !bone_manip;
 	}
 	else if (key == GLFW_KEY_J && action != GLFW_RELEASE) {
 		unsigned char*  data = new unsigned char[window_width_ * window_height_ * 3];
@@ -116,18 +128,20 @@ void GUI::mousePosCallback(double mouse_x, double mouse_y)
 		look_ = glm::column(orientation_, 2);
 	} else if (drag_bone && current_bone_ != -1) {
 		// FIXME: Handle bone rotation
-		glm::vec3 axis = glm::cross(look_, mouse_direction);
+		if (bone_manip) {
+			glm::vec3 axis = glm::cross(look_, mouse_direction);
 
-		Bone& currBone = mesh_->skeleton.bones[current_bone_];
+			Bone& currBone = mesh_->skeleton.bones[current_bone_];
 
-		Joint start = mesh_->skeleton.joints[currBone.jointStart];
-		Bone parentBone = mesh_->skeleton.bones[start.inBone];
-		glm::mat4 rotate_matrix = glm::rotate(rotation_speed_, axis);
-		update_transformations(*mesh_, current_bone_, rotate_matrix);
+			Joint start = mesh_->skeleton.joints[currBone.jointStart];
+			Bone parentBone = mesh_->skeleton.bones[start.inBone];
+			glm::mat4 rotate_matrix = glm::rotate(rotation_speed_, axis);
+			update_transformations(*mesh_, current_bone_, rotate_matrix);
 
-		mesh_->skeleton.dirty = true;
-		// pose_changed_ = true;
-		return;
+			mesh_->skeleton.dirty = true;
+			// pose_changed_ = true;
+			return;
+		}
 	}
 	// FIXME: highlight bones that have been moused over
 	glm::vec3 screenStartPos = glm::vec3(current_x_, current_y_, 0.0f);

@@ -112,7 +112,6 @@ void Mesh::updateAnimation()
 		glm::mat4 translations = glm::mat4(0.0f);
 		for(auto const& entry : dok[i]) {
 			int bid = entry.first;
-			// float weight = entry.second;
 			Bone currBone = skeleton.bones[bid];
 			glm::mat4 x = currBone.transformation * glm::inverse(currBone.oldTransformation);
 			x = dok[i][bid] * x;

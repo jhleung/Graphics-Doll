@@ -47,6 +47,7 @@ private:
 
 	int window_width_, window_height_;
 
+	bool bone_manip = false;
 	bool drag_state_ = false;
 	bool fps_mode_ = false;
 	bool pose_changed_ = true;
